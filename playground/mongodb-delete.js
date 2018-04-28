@@ -11,16 +11,28 @@ MongoClient.connect("mongodb://127.0.0.1:27017",(err,client)=>{
     var db = client.db("TodoApp")
 
    //delete many
-   db.collection('Todos').deleteMany({text: "raju gautam"})
-    .then((result) => {
-        console.log(result)
+//    db.collection('Todos').deleteMany({text: "raju gautam"})
+//     .then((result) => {
+//         console.log(result)
 
-    },(err=> {
-        console.log("There is an error ,"+err);
-    }));
+//     },(err=> {
+//         console.log("There is an error ,"+err);
+//     }));
 
    //delete one
 
    //findone and delete one
+    db.collection("Todos").findOneAndDelete({completed: false})
+        .then((result)=>{
 
+            console.log(result);
+            db.collection('Todos').insertOne(value,(err,result)=> {
+                if(err)  throw err;
+                console.log(JSON.stringify(res.ops[0],undefined,3));
+            });
+
+
+        },(err)=>{
+            console.log("error rigt now...");
+        });
 });
