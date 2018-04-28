@@ -33,7 +33,7 @@ MongoClient.connect("mongodb://127.0.0.1:27017",(err,client)=>{
         .then((result)=>{
 
             console.log(result);
-            db.collection('Todos').insertOne(value,(err,result)=> {
+            db.collection('Todos').insertOne(result.value,(err,result)=> {
                 if(err)  throw err;
                 console.log(JSON.stringify(res.ops[0],undefined,3));
             });
